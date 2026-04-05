@@ -23,9 +23,19 @@ async def init_db():
     client = AsyncIOMotorClient(MONGO_URL)
     db = client[DB_NAME]
     
-    # Create indexes
-    await db.users.create_index("user_id", unique=True)
-    await db.admins.create_index("user_id", unique=True)
+        # Remove any documents with null user_id before creating unique index
+    await db.users.delete_many({"user_id": None})
+    await db.admins.delete_many({"user_id": None})
+    
+    # Create indexes (ignore if already exists)
+    try:
+        await db.users.create_index("user_id", unique=True)
+    except Exception:
+        pass
+    try:
+        await db.admins.create_index("user_id", unique=True)
+    except Exception:
+        pass
     
     # Add owner as admin by default
     await add_admin(OWNER_ID)
