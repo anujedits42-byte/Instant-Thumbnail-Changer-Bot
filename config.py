@@ -30,7 +30,7 @@ OWNER_ID = int(os.environ.get("OWNER_ID", "7892805795"))
 # UI URLs - Multiple images that rotate randomly
 # Use DIRECT image URLs (https://i.ibb.co/...) not page URLs (https://ibb.co/...)
 START_PICS = [
-    "https://i.ibb.co/0jjgxKM4/changli-wuthering-waves-4k-wallpaper-uhdpaper-com-437-2-b.jpg",
+    "https://files.catbox.moe/tdiszo.jpg",
     # Add more direct image URLs here
 ]
 # CantarellaBots
